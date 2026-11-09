@@ -1,17 +1,24 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="th" data-lang="th">
 
 <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <meta name="description" content="I'm Mrinmoy,and this is my personal portfolio website..">
-    <meta name="keywords" content="Mrinmoy, Mrinmoy Deka, mrinmoy ">
+    <meta name="description" content="Jeeranan Prakothan (Kate) — Data & Tech Innovator and Hackathon Enthusiast. Awards, hackathon projects and data engineering work.">
+    <meta name="keywords" content="Jeeranan Prakothan, Kate, Data Engineer, Hackathon, DevSecOps, Portfolio">
+
+    <!-- ภาษาเริ่มต้น = ไทย (จำภาษาที่เลือกไว้ล่าสุด) — ต้องอยู่ก่อน CSS เพื่อไม่ให้หน้ากระพริบ -->
+    <script>
+        (function () {
+            var lang = 'th';
+            try { lang = localStorage.getItem('selected-lang') || 'th'; } catch (e) {}
+            document.documentElement.lang = lang;
+            document.documentElement.setAttribute('data-lang', lang);
+        })();
+    </script>
 
     <!-- ==================== UNICONS ==================== -->
     <link rel="stylesheet" href="https://unicons.iconscout.com/release/v4.0.0/css/line.css" />
-
-    <!--==================== SWIPER CSS ====================-->
-    <link rel="stylesheet" href="/assets/css/swiper-bundle.min.css" />
 
     <!--==================== CSS ====================-->
     <link rel="stylesheet" href="assets/css/style.css" />
@@ -19,49 +26,55 @@
     <title>Jeeranan Prakothan - Portfolio</title>
 
     <!--==================== Favicon ====================-->
-    <link rel="shortcut icon" href="assets\img\kitty.png" type="image/png">
+    <link rel="shortcut icon" href="assets/img/kitty.png" type="image/png">
 
     <!--==================== Animate on scroll CDN ====================-->
     <link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css" />
-
 </head>
 
+<!--
+    ระบบ 2 ภาษา:
+    เขียนข้อความเป็นคู่ <span lang="th">ไทย</span><span lang="en">English</span>
+    (ใช้กับ <p>, <h3> ฯลฯ ได้เหมือนกัน เช่น <p lang="th">...</p><p lang="en">...</p>)
+    ปุ่ม TH/EN จะซ่อนภาษาที่ไม่ได้เลือกให้เอง / ข้อความที่ไม่มี lang จะแสดงทั้งสองภาษา
+-->
 <body>
-    
+
     <!--==================== HEADER ====================-->
     <header class="header" id="header">
-        <nav class="nav container">
-            <a href="#" class="nav__logo">Portfolio</a>
+        <nav class="nav container container--wide">
+            <a href="#" class="nav__logo">Kate<span class="nav__logo-dot">.</span></a>
 
-            <div data-aos="fade-in" class="nav__menu" id="nav-menu">
+            <div class="nav__menu" id="nav-menu">
                 <ul class="nav__list grid">
-                    <li class="nav__items">
+                    <li class="nav__item">
                         <a href="#home" class="nav__link active-link">
-                            <i class="uil uil-estate nav__icon"></i> Home
+                            <i class="uil uil-estate nav__icon"></i>
+                            <span lang="th">หน้าแรก</span><span lang="en">Home</span>
                         </a>
                     </li>
-
-                    <li class="nav__items">
-                        <a href="#about" class="nav__link ">
-                            <i class="uil uil-user nav__icon"></i> About
+                    <li class="nav__item">
+                        <a href="#awards" class="nav__link">
+                            <i class="uil uil-trophy nav__icon"></i>
+                            <span lang="th">รางวัล</span><span lang="en">Awards</span>
                         </a>
                     </li>
-
-                    <li class="nav_items">
-                        <a href="#skills" class="nav__link ">
-                            <i class="uil uil-file nav__icon"></i> Skills
+                    <li class="nav__item">
+                        <a href="#journey" class="nav__link">
+                            <i class="uil uil-map-marker nav__icon"></i>
+                            <span lang="th">เส้นทาง</span><span lang="en">Journey</span>
                         </a>
                     </li>
-
-                    <li class="nav__items">
-                        <a href="#portfolio" class="nav__link ">
-                            <i class="uil uil-scenery nav__icon"></i> Portfolio
+                    <li class="nav__item">
+                        <a href="#mindset" class="nav__link">
+                            <i class="uil uil-bolt-alt nav__icon"></i>
+                            <span lang="th">แนวคิด</span><span lang="en">Mindset</span>
                         </a>
                     </li>
-
-                    <li class="nav__items">
-                        <a href="#contact" class="nav__link ">
-                            <i class="uil uil-message nav__icon"></i> Contact me
+                    <li class="nav__item">
+                        <a href="#contact" class="nav__link">
+                            <i class="uil uil-message nav__icon"></i>
+                            <span lang="th">ติดต่อ</span><span lang="en">Contact</span>
                         </a>
                     </li>
                 </ul>
@@ -69,9 +82,11 @@
             </div>
 
             <div class="nav__btns">
-                <!--Theme Change button-->
+                <button type="button" class="lang-toggle" id="lang-button" aria-label="Switch language / เปลี่ยนภาษา">
+                    <span class="lang-toggle__opt" data-opt="th">TH</span>
+                    <span class="lang-toggle__opt" data-opt="en">EN</span>
+                </button>
                 <i class="uil uil-moon change-theme" id="theme-button"></i>
-
                 <div class="nav__toggle" id="nav-toggle">
                     <i class="uil uil-apps"></i>
                 </div>
@@ -81,372 +96,450 @@
 
     <!--==================== MAIN ====================-->
     <main class="main">
-        <!--==================== HOME ====================-->
+
+        <!--==================== 1. HERO ====================-->
         <section class="home section" id="home">
-            <div data-aos="fade-left" class="home__container container grid">
+            <div class="home__container container container--wide grid">
                 <div class="home__content grid">
                     <div class="home__social">
-                        <a href="https://github.com/KateJeeranan" target="_blank" class="home__social-icon">
+                        <a href="https://github.com/KateJeeranan" target="_blank" rel="noopener" class="home__social-icon" aria-label="GitHub">
                             <i class="uil uil-github-alt"></i>
                         </a>
-                        <a href="https://medium.com/@jeeranan.prak" target="_blank" class="home__social-icon">
+                        <a href="https://medium.com/@jeeranan.prak" target="_blank" rel="noopener" class="home__social-icon" aria-label="Medium">
                             <i class="uil uil-medium-m"></i>
                         </a>
-                        <a href="https://www.linkedin.com/in/jeeranankate/" target="_blank" class="home__social-icon">
+                        <a href="https://www.linkedin.com/in/jeeranankate/" target="_blank" rel="noopener" class="home__social-icon" aria-label="LinkedIn">
                             <i class="uil uil-linkedin-alt"></i>
                         </a>
                     </div>
 
-                    <div data-aos="fade-right" class="home__img">
+                    <div data-aos="fade-left" class="home__img">
                         <svg class="home__blob" viewBox="0 0 200 187" xmlns="http://www.w3.org/2000/svg"
                             xmlns:xlink="http://www.w3.org/1999/xlink">
                             <mask id="mask0" mask-type="alpha">
-                                <path d="M190.312 36.4879C206.582 62.1187 201.309 102.826 182.328 134.186C163.346 165.547 
-                                130.807 187.559 100.226 186.353C69.6454 185.297 41.0228 161.023 21.7403 129.362C2.45775 
-                                97.8511 -7.48481 59.1033 6.67581 34.5279C20.9871 10.1032 59.7028 -0.149132 97.9666 
+                                <path d="M190.312 36.4879C206.582 62.1187 201.309 102.826 182.328 134.186C163.346 165.547
+                                130.807 187.559 100.226 186.353C69.6454 185.297 41.0228 161.023 21.7403 129.362C2.45775
+                                97.8511 -7.48481 59.1033 6.67581 34.5279C20.9871 10.1032 59.7028 -0.149132 97.9666
                                 0.00163737C136.23 0.303176 174.193 10.857 190.312 36.4879Z" />
                             </mask>
                             <g mask="url(#mask0)">
-                                <path d="M190.312 36.4879C206.582 62.1187 201.309 102.826 182.328 134.186C163.346 
-                                165.547 130.807 187.559 100.226 186.353C69.6454 185.297 41.0228 161.023 21.7403 
-                                129.362C2.45775 97.8511 -7.48481 59.1033 6.67581 34.5279C20.9871 10.1032 59.7028 
+                                <path d="M190.312 36.4879C206.582 62.1187 201.309 102.826 182.328 134.186C163.346
+                                165.547 130.807 187.559 100.226 186.353C69.6454 185.297 41.0228 161.023 21.7403
+                                129.362C2.45775 97.8511 -7.48481 59.1033 6.67581 34.5279C20.9871 10.1032 59.7028
                                 -0.149132 97.9666 0.00163737C136.23 0.303176 174.193 10.857 190.312 36.4879Z" />
-
-                                <image class="home__blob-img" x="12" y="18" href="assets\img\profile.png" />
+                                <image class="home__blob-img" x="12" y="18" href="assets/img/profile.png" />
                             </g>
                         </svg>
                     </div>
 
-                    <div class="home__data">
-                        <h1 class="home_title">Hi!<span class="wave">👋</span>, I'm Kate</h1>
-                        <h3 class="home__subtitle">
-                            and I'm <span class="auto-input"></span>
-                        </h3>
-                        <p class="home__description">
-                            I'm a 4th-year Computer Science student who’s passionate about Data Engineering and Artificial Intelligence.
+                    <div data-aos="fade-right" class="home__data">
+                        <span class="home__greeting">Jeeranan Prakothan (Kate)</span>
+                        <h1 class="home__title">
+                            <span lang="th">ผลงานการแข่งขัน</span>
+                            <span lang="en">Competition Portfolio</span>
+                            <span class="home__title-accent">Hackathon &amp; Innovation</span>
+                        </h1>
+                        <p class="home__description" lang="th">
+                            บัณฑิตสาขาวิทยาการคอมพิวเตอร์ พอร์ตนี้รวบรวมผลงานจากการแข่งขัน Hackathon และการประกวดนวัตกรรม
+                            ครอบคลุมตั้งแต่การวิเคราะห์ปัญหา การออกแบบโซลูชัน การพัฒนา Prototype ไปจนถึงการนำเสนอต่อคณะกรรมการ
                         </p>
-                        <a href="#contact" class="button button--flex">
-                            Contact Me <i class="uil uil-message button__icon"></i>
-                        </a>
+                        <p class="home__description" lang="en">
+                            Computer Science graduate. This portfolio brings together my work from hackathons and innovation
+                            competitions, covering problem analysis, solution design, prototype development and pitching to judging panels.
+                        </p>
+                        <div class="home__buttons">
+                            <a href="#awards" class="button button--flex">
+                                <span lang="th">ดูผลงานที่ได้รับรางวัล</span><span lang="en">View Awards</span>
+                                <i class="uil uil-trophy button__icon"></i>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Quick Stats Counter -->
+                <div class="stats grid" data-aos="fade-up">
+                    <div class="stats__card">
+                        <span class="stats__number"><span class="counter" data-target="2">0</span></span>
+                        <span class="stats__label"><span lang="th">รางวัลที่ได้รับ</span><span lang="en">Awards &amp; Honors</span></span>
+                    </div>
+                    <div class="stats__card">
+                        <!-- นับจากจำนวนการ์ดใน My Journey ให้อัตโนมัติ -->
+                        <span class="stats__number"><span class="counter" data-target="auto">0</span>+</span>
+                        <span class="stats__label"><span lang="th">แฮกกาธอน การแข่งขัน และกิจกรรม</span><span lang="en">Hackathons, Contests &amp; Activities</span></span>
+                    </div>
+                    <div class="stats__card">
+                        <!-- นับจากปีแรกถึงปีล่าสุดใน My Journey ให้อัตโนมัติ -->
+                        <span class="stats__number"><span class="counter" data-target="auto-years">0</span></span>
+                        <span class="stats__label"><span lang="th">ปีบนเวทีการแข่งขัน</span><span lang="en">Years of Competing</span></span>
                     </div>
                 </div>
 
                 <div class="home__scroll">
-                    <a href="#about" class="home__scroll-button button--flex">
+                    <a href="#awards" class="home__scroll-button button--flex">
                         <i class="uil uil-mouse-alt home__scroll-mouse"></i>
-                        <span class="home__scroll-name"> Scroll down</span>
+                        <span class="home__scroll-name"><span lang="th">เลื่อนลง</span><span lang="en">Scroll down</span></span>
                         <i class="uil uil-arrow-down home__scroll-arrow"></i>
                     </a>
                 </div>
             </div>
         </section>
 
-        <!--==================== ABOUT ====================-->
-        <section class="about section" id="about">
-            <h2 class="section__title">About Me</h2>
-            <span class="section__subtitle"> My Introduction</span>
+        <!--==================== 2. FEATURED ACHIEVEMENTS ====================-->
+        <section class="awards section" id="awards">
+            <h2 class="section__title"><span lang="th">ผลงานที่ได้รับรางวัล</span><span lang="en">Featured Achievements</span></h2>
+            <span class="section__subtitle"><span lang="th">โปรเจกต์ที่ได้รับรางวัลจากการแข่งขัน</span><span lang="en">Recognised projects</span></span>
 
-            <div data-aos="fade-left" class="about__container container grid">
-                <img src="assets\img\aboutmepic.png" alt="" class="about__img" />
+            <!--
+                วิธีเพิ่มรางวัลใหม่: copy <article class="award"> ... </article> ทั้งก้อนมาวางต่อท้าย
+                แล้วแก้: รูป, ป้ายรางวัล (award__badge — ใส่ได้หลายอัน), ชื่องาน·ปี, ชื่อโปรเจกต์, บทบาท,
+                ปัญหา, วิธีแก้, tags, ปุ่มลิงก์ (ไม่มีก็ลบปุ่มทิ้งได้) — เขียนทั้ง lang="th" และ lang="en"
+                อย่าลืมแก้ตัวเลขรางวัลใน Hero (data-target) ด้วย
+            -->
+            <div class="awards__container container container--wide grid">
 
-                <div class="about__data">
-                    <p class="about__description">
-                        Hi! I'm Jeeranan Prakothan(Kate), a Computer Science student passionate about turning ideas into real, working projects.  
-                        I enjoy working with data and building tools like pipelines using Python and Airflow.  
-                        I’ve also explored AI through hands-on projects like sentiment analysis.  <br>
-
-                        Learning new things is fun and challenging to me, like solving puzzles. 
-                        I also enjoy meeting new people and learning from their experiences.
-                    </p>
-
-                    <!-- <div class="about_info">
-                        <div>
-                            <span class="about__info-title">02+</span>
-                            <span class="about__info-name">Years <br />
-                                experience</span>
+                <!--========== Award 1 ==========-->
+                <article class="award" data-aos="fade-up">
+                    <div class="award__media">
+                        <img src="assets/img/Berkeley skydeck.jpg" alt="BU x Berkeley SkyDeck Fund Hackathon 2025 certificate" class="award__img">
+                        <div class="award__badges">
+                            <span class="award__badge">🏆 <span lang="th">รางวัลที่ 3</span><span lang="en">Third Prize</span></span>
+                            <span class="award__badge">🥈 <span lang="th">รางวัลที่ 2</span><span lang="en">Second Prize</span></span>
                         </div>
-                        <div>
-                            <span class="about__info-title">20+</span>
-                            <span class="about__info-name">Completed <br />
-                                project</span>
-                        </div>
-                        <div>
-                            <span class="about__info-title">24/7</span>
-                            <span class="about__info-name">Online<br />
-                                support</span>
-                        </div>
-                    </div> -->
-
-                    <div class="about__buttons">
-                        <a download="" href="assets\pdf\CV_Jeeranan.pdf" class="button button--flex">
-                            Download CV <i class="uil uil-download-alt button__icon"></i>
-                        </a>
                     </div>
+
+                    <div class="award__body">
+                        <span class="award__event"><i class="uil uil-calendar-alt"></i> BU x Berkeley SkyDeck Fund Hackathon &amp; BU Mini Hackathon · 2025</span>
+                        <h3 class="award__title"><span lang="th">แอปไดอารี่สุขภาพจิต</span><span lang="en">Mental Health Diary App</span></h3>
+                        <p class="award__role"><i class="uil uil-user-circle"></i>
+                            <strong><span lang="th">บทบาท:</span><span lang="en">Role:</span></strong>
+                            <span lang="th">UX/UI Designer และผู้สร้าง Prototype — ทีม Butter Bear</span>
+                            <span lang="en">UX/UI Designer &amp; Prototype Builder — Team Butter Bear</span>
+                        </p>
+
+                        <div class="award__blocks grid">
+                            <div class="award__block">
+                                <h4 class="award__block-title"><i class="uil uil-exclamation-circle"></i> <span lang="th">ปัญหา</span><span lang="en">Problem</span></h4>
+                                <p lang="th">ความเครียดที่ไม่ได้ระบายอาจนำไปสู่โรคซึมเศร้าและโรคทางจิตอื่นๆ แต่หลายคนไม่มีพื้นที่ปลอดภัยให้ได้ระบาย และบางคนก็กลัวการไปหาหมอ</p>
+                                <p lang="en">Unspoken stress can grow into depression and other mental illnesses, yet many people have no safe place to open up — and some are afraid to see a doctor.</p>
+                            </div>
+                            <div class="award__block award__block--solution">
+                                <h4 class="award__block-title"><i class="uil uil-lightbulb-alt"></i> <span lang="th">วิธีแก้ของเรา</span><span lang="en">Our Solution</span></h4>
+                                <p lang="th">ไดอารี่ส่วนตัวและคอมมูนิตี้ที่มีตัวละครน่ารักๆ ไว้คุยกับคนอื่น พร้อมระบบตรวจจับคำหยาบและคำเชิงลบเพื่อให้การพูดคุยปลอดภัย หากพบอาการรุนแรง แอปจะแนะนำให้พบจิตแพทย์หรือนักบำบัด เลือกได้ทั้งแบบออนไลน์และไปพบที่สถานที่จริง</p>
+                                <p lang="en">A private diary and a friendly character-based community, with toxic and negative-language detection to keep chats safe. When severe symptoms are detected, users are guided to a psychiatrist or therapist — online or on-site.</p>
+                            </div>
+                        </div>
+
+                        <div class="award__skills">
+                            <span class="award__skills-label"><i class="uil uil-wrench"></i> <span lang="th">ทักษะที่ใช้ในงานนี้</span><span lang="en">Skills applied</span></span>
+                            <ul class="tags">
+                                <li class="tag">User Research</li>
+                                <li class="tag">UX/UI Design</li>
+                                <li class="tag">User Flow</li>
+                                <li class="tag">Prototyping</li>
+                            </ul>
+                        </div>
+
+                        <div class="award__links">
+                            <a href="assets/pdf/Berkeley Skydeck Certificate.pdf" target="_blank" class="button button--small button--flex">
+                                <span lang="th">เกียรติบัตร</span><span lang="en">Certificate</span>
+                                <i class="uil uil-file-check-alt button__icon"></i>
+                            </a>
+                        </div>
+                    </div>
+                </article>
+
+                <!--========== Award 2 ==========-->
+                <article class="award" data-aos="fade-up">
+                    <div class="award__media">
+                        <img src="assets/img/Certificate_Oic.jpg" alt="OIC Insurtech Award 2022 certificate" class="award__img">
+                        <div class="award__badges">
+                            <span class="award__badge">🏅 <span lang="th">30 ทีมสุดท้าย</span><span lang="en">Top 30 Finalist</span></span>
+                        </div>
+                    </div>
+
+                    <div class="award__body">
+                        <span class="award__event"><i class="uil uil-calendar-alt"></i> OIC Insurtech Award · 2022</span>
+                        <h3 class="award__title"><span lang="th">เศรษฐีประกันภัย — เกม VR เพื่อการเรียนรู้</span><span lang="en">Insurance Tycoon — VR Learning Game</span></h3>
+                        <p class="award__role"><i class="uil uil-user-circle"></i>
+                            <strong><span lang="th">บทบาท:</span><span lang="en">Role:</span></strong>
+                            <span lang="th">หัวหน้าทีมและผู้นำเสนอ (Pitcher) — ทีม Diamond Tech</span>
+                            <span lang="en">Team Lead &amp; Pitcher — Team Diamond Tech</span>
+                        </p>
+
+                        <div class="award__blocks grid">
+                            <div class="award__block">
+                                <h4 class="award__block-title"><i class="uil uil-exclamation-circle"></i> <span lang="th">ปัญหา</span><span lang="en">Problem</span></h4>
+                                <p lang="th">คนไทยจำนวนมากไม่ซื้อประกัน เพราะรู้สึกว่ากรมธรรม์ซับซ้อนและเข้าใจยาก</p>
+                                <p lang="en">Many Thais don't buy insurance because policies feel complicated and hard to understand.</p>
+                            </div>
+                            <div class="award__block award__block--solution">
+                                <h4 class="award__block-title"><i class="uil uil-lightbulb-alt"></i> <span lang="th">วิธีแก้ของเรา</span><span lang="en">Our Solution</span></h4>
+                                <p lang="th">"เศรษฐีประกันภัย" เกม VR ที่สอดแทรกความรู้เรื่องประกันภัยไว้ระหว่างเล่น ให้ผู้เล่นเรียนรู้ผ่านการเล่น แทนการอ่านเงื่อนไขยาวๆ</p>
+                                <p lang="en">"Insurance Tycoon" (เศรษฐีประกันภัย), a VR game that weaves insurance knowledge into play, so people learn by playing instead of reading fine print.</p>
+                            </div>
+                        </div>
+
+                        <div class="award__skills">
+                            <span class="award__skills-label"><i class="uil uil-wrench"></i> <span lang="th">ทักษะที่ใช้ในงานนี้</span><span lang="en">Skills applied</span></span>
+                            <ul class="tags">
+                                <li class="tag">Team Leadership</li>
+                                <li class="tag">Business Planning</li>
+                                <li class="tag">Marketing</li>
+                                <li class="tag">UX/UI Design</li>
+                                <li class="tag">Pitching</li>
+                            </ul>
+                        </div>
+
+                        <div class="award__links">
+                            <a href="assets/pdf/Certificate_Oic.pdf" target="_blank" class="button button--small button--flex">
+                                <span lang="th">เกียรติบัตร</span><span lang="en">Certificate</span>
+                                <i class="uil uil-file-check-alt button__icon"></i>
+                            </a>
+                        </div>
+                    </div>
+                </article>
+            </div>
+        </section>
+
+        <!--==================== 3. MY JOURNEY (ทุกกิจกรรม) ====================-->
+        <!--
+            วิธีเพิ่มกิจกรรมใหม่:
+            1) หา <div class="journey__year" data-year="ปี"> ของปีนั้น
+               (ถ้ายังไม่มีปีนั้น ให้ copy ทั้งบล็อกปีมาวาง เรียงจากปีใหม่ไปเก่า)
+            2) copy <article class="jcard" data-type="..."> ... </article> ไปวางใน journey__grid
+            3) data-type = ประเภทกิจกรรม (ภาษาอังกฤษ) เช่น Hackathon, Competition, Workshop, Bootcamp,
+               Conference, Volunteer, Camp, Talk, Course, TV Show
+               ป้ายบนการ์ดและปุ่มกรองจะสร้างให้เอง พร้อมแปลไทยให้ (ถ้าเป็นประเภทใหม่จะแสดงชื่อตามที่พิมพ์)
+            4) รูป: ใส่ในการ์ดแบบนี้ (ใส่ได้หลายรูป รูปแรกเป็นปก คลิกเพื่อดูทั้งหมด)
+                   <div class="jcard__media">
+                       <img src="assets/img/activities/ชื่อไฟล์.jpg" alt="คำอธิบายรูป">
+                   </div>
+               วางไว้บรรทัดแรกใน <article> ก่อน <div class="jcard__body"> / ถ้าไม่มีรูปก็ไม่ต้องใส่
+            5) ถ้าได้รางวัล ใส่ <a href="#awards" class="jcard__award">🏆 ...</a>
+            6) Key Takeaway ไม่บังคับ ไม่มีก็ลบบรรทัด jcard__takeaway ได้
+            7) ข้อความเขียนทั้ง lang="th" และ lang="en"
+            ปุ่มกรอง, จำนวนต่อปี และตัวเลขใน Hero จะนับให้อัตโนมัติ
+        -->
+        <section class="journey section" id="journey">
+            <h2 class="section__title"><span lang="th">เส้นทางของฉัน</span><span lang="en">My Journey</span></h2>
+            <span class="section__subtitle"><span lang="th">แฮกกาธอน การแข่งขัน และกิจกรรมอื่นๆ — เรียงตามปี</span><span lang="en">Hackathons, competitions &amp; more — year by year</span></span>
+
+            <div class="journey__container container container--wide">
+                <div class="journey__filters" id="journey-filters">
+                    <div class="journey__filter-row" id="filter-year" aria-label="Filter by year"></div>
+                </div>
+
+                <!--=============== 2025 ===============-->
+                <div class="journey__year" data-year="2025">
+                    <div class="journey__year-head">
+                        <span class="journey__year-num">2025</span>
+                        <span class="journey__year-count"></span>
+                    </div>
+
+                    <div class="journey__grid">
+                        <article class="jcard" data-type="Hackathon" data-aos="fade-up">
+                            <div class="jcard__media">
+                                <img src="assets/img/Berkeley skydeck.jpg" alt="BU x Berkeley SkyDeck Fund Hackathon 2025">
+                            </div>
+                            <div class="jcard__body">
+                                <div class="jcard__awards">
+                                    <a href="#awards" class="jcard__award">🥈 <span lang="th">รางวัลที่ 2 · BU Mini</span><span lang="en">Second Prize · BU Mini</span></a>
+                                    <a href="#awards" class="jcard__award">🏆 <span lang="th">รางวัลที่ 3 · SkyDeck</span><span lang="en">Third Prize · SkyDeck</span></a>
+                                </div>
+                                <h3 class="jcard__event">BU Mini Hackathon → BU x Berkeley SkyDeck Fund Hackathon</h3>
+                                <span class="jcard__focus"><span lang="th">สุขภาพจิต · Product Design</span><span lang="en">Mental Health · Product Design</span></span>
+                                <p class="jcard__built" lang="th"><strong>ผลงาน:</strong> แอปไดอารี่สุขภาพจิตที่เป็นพื้นที่ปลอดภัยให้ระบาย มีคอมมูนิตี้ตัวละครน่ารักๆ ระบบตรวจจับคำเชิงลบ และแนะนำให้พบจิตแพทย์เมื่อพบอาการรุนแรง ต่อยอดจากรอบ BU Mini Hackathon ไปสู่เวที SkyDeck</p>
+                                <p class="jcard__built" lang="en"><strong>Project:</strong> A mental health diary app: a safe space to vent, a friendly character community, negative-language detection, and referrals to a psychiatrist when symptoms look severe. Carried from BU Mini Hackathon through to the SkyDeck stage.</p>
+                                <p class="jcard__role" lang="th"><i class="uil uil-user-circle"></i> <strong>บทบาท:</strong> UX/UI Designer &amp; Prototype Builder — เก็บ User Requirement ออกแบบ UX/UI และ User Flow และสร้าง Prototype ที่ใช้งานได้จริง</p>
+                                <p class="jcard__role" lang="en"><i class="uil uil-user-circle"></i> <strong>My role:</strong> UX/UI Designer &amp; Prototype Builder — gathered user requirements, designed the UX/UI and user flow, and built the working prototype.</p>
+                                <p class="jcard__takeaway" lang="th"><i class="uil uil-star"></i> เปลี่ยน Pain Point ของผู้ใช้จริงให้เป็น Prototype ที่กดใช้งานได้ และพาไอเดียเดียวคว้ารางวัลได้ทั้งสองเวที</p>
+                                <p class="jcard__takeaway" lang="en"><i class="uil uil-star"></i> Turned real user pain points into a clickable prototype, and carried one idea to awards on both stages.</p>
+                            </div>
+                        </article>
+
+                        <article class="jcard" data-type="Competition" data-aos="fade-up">
+                            <div class="jcard__media">
+                                <img src="assets/img/YTSA.jpg" alt="Young Thai Science Ambassador #20 — ปลูกเพื่อใจ ปลูกเพื่อโลก">
+                            </div>
+                            <div class="jcard__body">
+                                <h3 class="jcard__event"><span lang="th">Young Thai Science Ambassador #20 (YTSA) — "ปลูกเพื่อใจ ปลูกเพื่อโลก"</span><span lang="en">Young Thai Science Ambassador #20 (YTSA) — "Plant for the Mind, Plant for the Planet"</span></h3>
+                                <span class="jcard__focus"><span lang="th">สุขภาพจิต × สิ่งแวดล้อม</span><span lang="en">Mental Health × Environment</span></span>
+                                <p class="jcard__built" lang="th"><strong>ผลงาน:</strong> แนวคิดบำบัดจิตใจผ่านธรรมชาติด้วยการปลูกต้นไม้ ที่ช่วยทั้งเยียวยาจิตใจและฟื้นฟูสิ่งแวดล้อมไปพร้อมกัน</p>
+                                <p class="jcard__built" lang="en"><strong>Project:</strong> Nature therapy through tree planting, which heals the mind and restores the environment at the same time.</p>
+                                <p class="jcard__role" lang="th"><i class="uil uil-user-circle"></i> <strong>บทบาท:</strong> เจ้าของไอเดียและผู้นำเสนอผลงาน</p>
+                                <p class="jcard__role" lang="en"><i class="uil uil-user-circle"></i> <strong>My role:</strong> Came up with the idea and pitched it.</p>
+                                <p class="jcard__takeaway" lang="th"><i class="uil uil-star"></i> ผสมความสนใจด้านสุขภาพจิตเข้ากับความรู้วิทยาศาสตร์ใหม่ๆ เพื่อสร้างผลงานที่มีความหมายและส่งผลต่อใจคน</p>
+                                <p class="jcard__takeaway" lang="en"><i class="uil uil-star"></i> Combined my interest in mental health with new scientific knowledge to create work that is meaningful and touches people.</p>
+                            </div>
+                        </article>
+                    </div>
+                </div>
+
+                <!--=============== 2023 ===============-->
+                <div class="journey__year" data-year="2023">
+                    <div class="journey__year-head">
+                        <span class="journey__year-num">2023</span>
+                        <span class="journey__year-count"></span>
+                    </div>
+
+                    <div class="journey__grid">
+                        <article class="jcard" data-type="Competition" data-aos="fade-up">
+                            <div class="jcard__media">
+                                <img src="assets/img/mitrphol.jpeg" alt="Mitr Phol YES Talent Camp 2023">
+                            </div>
+                            <div class="jcard__body">
+                                <h3 class="jcard__event"><span lang="th">Mitr Phol YES Talent Camp — เครื่องดื่มสุขภาพจากกากน้ำตาล</span><span lang="en">Mitr Phol YES Talent Camp — Molasses Health Drink</span></h3>
+                                <span class="jcard__focus"><span lang="th">ผลิตภัณฑ์สุขภาพ · Business</span><span lang="en">Health Product · Business</span></span>
+                                <p class="jcard__built" lang="th"><strong>ผลงาน:</strong> น้ำดื่มเพื่อสุขภาพจากกากน้ำตาล แหล่งโพลีฟีนอลที่ช่วยลดการสะสมไขมันและช่วยการเผาผลาญไขมันในตับ เพื่อลดความเสี่ยงโรคหลอดเลือดสมองจากการกินอาหารหวานและมัน</p>
+                                <p class="jcard__built" lang="en"><strong>Project:</strong> A polyphenol-rich health drink made from molasses that helps reduce fat build-up and supports fat metabolism in the liver, lowering stroke risk from high-sugar, high-fat diets.</p>
+                                <p class="jcard__role" lang="th"><i class="uil uil-user-circle"></i> <strong>บทบาท:</strong> หัวหน้าทีมและผู้นำเสนอ — คุมภาพรวมและประสานงานระหว่างฝั่ง Business, Marketing และ Product</p>
+                                <p class="jcard__role" lang="en"><i class="uil uil-user-circle"></i> <strong>My role:</strong> Team Lead &amp; Pitcher — kept the team on track and coordinated the business, marketing and product sides.</p>
+                                <p class="jcard__takeaway" lang="th"><i class="uil uil-star"></i> นำทีมจาก Insight ด้านสุขภาพ ไปสู่ผลิตภัณฑ์ที่มีเรื่องราวทางธุรกิจชัดเจน</p>
+                                <p class="jcard__takeaway" lang="en"><i class="uil uil-star"></i> Led a team from a public-health insight to a product with a clear business story.</p>
+                            </div>
+                        </article>
+
+                        <article class="jcard" data-type="TV Show" data-aos="fade-up">
+                            <div class="jcard__media">
+                                <img src="assets/img/TVshow.png" alt="ภารกิจพิชิตฝัน — ALTV Thai PBS">
+                            </div>
+                            <div class="jcard__body">
+                                <h3 class="jcard__event"><span lang="th">รายการภารกิจพิชิตฝัน (ALTV Thai PBS)</span><span lang="en">ภารกิจพิชิตฝัน — ALTV Thai PBS TV Program</span></h3>
+                                <span class="jcard__focus"><span lang="th">ประสบการณ์อาชีพ Data Scientist</span><span lang="en">Data Scientist Career Experience</span></span>
+                                <p class="jcard__built" lang="th"><strong>สิ่งที่ทำ:</strong> เข้าร่วมรายการตอนปี 2 ได้ลองฝึกงานเป็น Data Scientist ในช่วงที่ยังค้นหาตัวเอง</p>
+                                <p class="jcard__built" lang="en"><strong>What I did:</strong> Joined the show in my second year and interned as a data scientist while still figuring out my career path.</p>
+                                <p class="jcard__takeaway" lang="th"><i class="uil uil-star"></i> ออกรายการทีวีครั้งแรก และเป็นครั้งแรกที่ได้สัมผัสสายงาน Data ที่ตอนนี้กำลังมุ่งไป</p>
+                                <p class="jcard__takeaway" lang="en"><i class="uil uil-star"></i> My first time on TV, and my first hands-on look at the data career I'm now pursuing.</p>
+                            </div>
+                        </article>
+                    </div>
+                </div>
+
+                <!--=============== 2022 ===============-->
+                <div class="journey__year" data-year="2022">
+                    <div class="journey__year-head">
+                        <span class="journey__year-num">2022</span>
+                        <span class="journey__year-count"></span>
+                    </div>
+
+                    <div class="journey__grid">
+                        <article class="jcard" data-type="Competition" data-aos="fade-up">
+                            <div class="jcard__media">
+                                <img src="assets/img/Certificate_Oic.jpg" alt="OIC Insurtech Award 2022">
+                            </div>
+                            <div class="jcard__body">
+                                <a href="#awards" class="jcard__award">🏅 <span lang="th">30 ทีมสุดท้าย</span><span lang="en">Top 30 Finalist</span></a>
+                                <h3 class="jcard__event"><span lang="th">OIC Insurtech Award — เศรษฐีประกันภัย (VR)</span><span lang="en">OIC Insurtech Award — Insurance Tycoon (VR)</span></h3>
+                                <span class="jcard__focus">InsurTech · Gamification</span>
+                                <p class="jcard__built" lang="th"><strong>ผลงาน:</strong> เกม VR "เศรษฐีประกันภัย" ที่สอดแทรกความรู้เรื่องประกันภัยไว้ระหว่างเล่น ให้คนเข้าใจประกันได้ง่ายขึ้น</p>
+                                <p class="jcard__built" lang="en"><strong>Project:</strong> A VR game, "Insurance Tycoon", that weaves insurance knowledge into play so people understand insurance more easily.</p>
+                                <p class="jcard__role" lang="th"><i class="uil uil-user-circle"></i> <strong>บทบาท:</strong> หัวหน้าทีมและผู้นำเสนอ — คิดด้าน Business และ Marketing และช่วยออกแบบ UX/UI ของเว็บแอป</p>
+                                <p class="jcard__role" lang="en"><i class="uil uil-user-circle"></i> <strong>My role:</strong> Team Lead &amp; Pitcher — worked on the business and marketing plan and helped design the web app UX/UI.</p>
+                                <p class="jcard__takeaway" lang="th"><i class="uil uil-star"></i> เปลี่ยนเรื่องที่คนมองว่ายาก ให้กลายเป็นเกมที่อยากเล่น</p>
+                                <p class="jcard__takeaway" lang="en"><i class="uil uil-star"></i> Turned a topic people find confusing into something they actually want to play.</p>
+                            </div>
+                        </article>
+
+                        <article class="jcard" data-type="Competition" data-aos="fade-up">
+                            <div class="jcard__media">
+                                <img src="assets/img/Certificate_Aging.PNG" alt="Innovation For Aging Society 2022">
+                            </div>
+                            <div class="jcard__body">
+                                <h3 class="jcard__event"><span lang="th">Innovation For Aging Society — หมอนอัจฉริยะตรวจจับการกรน</span><span lang="en">Innovation For Aging Society — Smart Snore-Detecting Pillow</span></h3>
+                                <span class="jcard__focus"><span lang="th">HealthTech · การดูแลผู้สูงอายุ</span><span lang="en">HealthTech · Elderly Care</span></span>
+                                <p class="jcard__built" lang="th"><strong>ผลงาน:</strong> หมอนอัจฉริยะที่ตรวจจับการกรนระดับอันตรายและปลุกให้ตื่น ใช้โมเดล B2B2C ขายทั้งผู้ใช้ทั่วไป โรงพยาบาล และสถานดูแลผู้สูงอายุ</p>
+                                <p class="jcard__built" lang="en"><strong>Project:</strong> A smart pillow that detects dangerous snoring and wakes the sleeper, with a B2B2C model selling to individuals, hospitals and elderly care homes.</p>
+                                <p class="jcard__role" lang="th"><i class="uil uil-user-circle"></i> <strong>บทบาท:</strong> หัวหน้าทีมและผู้นำเสนอ — คิดด้าน Business และ Marketing และช่วยออกแบบ UX/UI ของเว็บแอป</p>
+                                <p class="jcard__role" lang="en"><i class="uil uil-user-circle"></i> <strong>My role:</strong> Team Lead &amp; Pitcher — worked on the business and marketing plan and helped design the web app UX/UI.</p>
+                                <p class="jcard__takeaway" lang="th"><i class="uil uil-star"></i> ออกแบบโมเดล B2B2C ที่เข้าถึงผู้ใช้ผ่านโรงพยาบาลและสถานดูแลผู้สูงอายุ</p>
+                                <p class="jcard__takeaway" lang="en"><i class="uil uil-star"></i> Designed a B2B2C model that reaches users through hospitals and care homes.</p>
+                            </div>
+                        </article>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Lightbox สำหรับดูรูป -->
+            <div class="lightbox" id="lightbox" hidden>
+                <button class="lightbox__close" id="lightbox-close" aria-label="Close"><i class="uil uil-times"></i></button>
+                <button class="lightbox__nav lightbox__nav--prev" id="lightbox-prev" aria-label="Previous"><i class="uil uil-angle-left-b"></i></button>
+                <figure class="lightbox__figure">
+                    <img class="lightbox__img" id="lightbox-img" alt="">
+                    <figcaption class="lightbox__caption" id="lightbox-caption"></figcaption>
+                </figure>
+                <button class="lightbox__nav lightbox__nav--next" id="lightbox-next" aria-label="Next"><i class="uil uil-angle-right-b"></i></button>
+            </div>
+        </section>
+
+        <!--==================== 4. WHY I LOVE HACKATHONS ====================-->
+        <section class="mindset section" id="mindset">
+            <h2 class="section__title"><span lang="th">ทำไมถึงชอบเข้าร่วมการแข่งขัน</span><span lang="en">Why I Love Competing</span></h2>
+            <span class="section__subtitle"><span lang="th">สิ่งที่ได้จากเวทีการแข่งขัน และพร้อมนำไปใช้ในการทำงาน</span><span lang="en">What competing taught me, and what I bring to work</span></span>
+
+            <div class="mindset__container container container--wide grid">
+                <div class="mindset__card" data-aos="fade-up">
+                    <span class="mindset__icon"><i class="uil uil-puzzle-piece"></i></span>
+                    <h3 class="mindset__title"><span lang="th">แก้ปัญหาเฉพาะหน้า</span><span lang="en">On-the-Spot Problem Solving</span></h3>
+                    <p class="mindset__text" lang="th">ฝึกแก้ปัญหาหน้างานภายใต้เวลาและทรัพยากรที่จำกัด และปรับแผนได้ทันทีเมื่อสถานการณ์เปลี่ยน ทักษะที่นำไปใช้กับการทำงานจริงได้ทุกวัน</p>
+                    <p class="mindset__text" lang="en">Solving problems on the spot with limited time and resources, and adjusting plans quickly when things change. A skill that carries straight into everyday work.</p>
+                </div>
+                <div class="mindset__card" data-aos="fade-up" data-aos-delay="100">
+                    <span class="mindset__icon"><i class="uil uil-rocket"></i></span>
+                    <h3 class="mindset__title"><span lang="th">เรียนรู้สิ่งใหม่ได้เร็ว</span><span lang="en">Fast Learner</span></h3>
+                    <p class="mindset__text" lang="th">ฝึกเรียนรู้เครื่องมือและเทคโนโลยีใหม่ๆ ให้ใช้งานได้อย่างรวดเร็ว และพร้อมนำไปปรับใช้กับงานในอนาคต</p>
+                    <p class="mindset__text" lang="en">Picking up new tools and technologies quickly, ready to apply them to whatever work comes next.</p>
+                </div>
+                <div class="mindset__card" data-aos="fade-up" data-aos-delay="200">
+                    <span class="mindset__icon"><i class="uil uil-users-alt"></i></span>
+                    <h3 class="mindset__title"><span lang="th">ทำงานร่วมกับคนต่างสายงาน</span><span lang="en">Cross-Functional Teamwork</span></h3>
+                    <p class="mindset__text" lang="th">ทำงานร่วมกับคนต่างสายงาน ทั้ง Business, Design และ Tech เพื่อหาทางออกที่ดีที่สุดร่วมกัน</p>
+                    <p class="mindset__text" lang="en">Working with people from business, design and tech to reach the best solution together.</p>
                 </div>
             </div>
         </section>
 
-        <!--==================== SKILLS ====================-->
-        <section class="skills section" id="skills">
-        <h2 class="section__title">Skills</h2>
-        <span class="section__subtitle">Key Skills I've Learned</span>
-
-        <div data-aos="fade-up" class="skills__container container grid">
-            <div class="skills__card">
-            <img src="assets/img/python.png" alt="Python" class="skills__icon" />
-            <p>Python</p>
-            </div>
-
-            <div class="skills__card">
-            <img src="assets\img\sql.jpg" alt="CSS" class="skills__icon" />
-            <p>SQL</p>
-            </div>
-
-            <div class="skills__card">
-            <img src="assets\img\pandas.png" alt="HTML" class="skills__icon" />
-            <p>Pandas</p>
-            </div>
-
-            <div class="skills__card">
-            <img src="assets\img\Apache Spark.png" alt="JavaScript" class="skills__icon" />
-            <p>Apache Spark</p>
-            </div>
-
-            <div class="skills__card">
-            <img src="assets\img\Apache Airflow.png" alt="ReactJS" class="skills__icon" />
-            <p>Apache Airflow</p>
-            </div>
-
-            <div class="skills__card">
-            <img src="assets\img\bigquery.png" alt="SQL" class="skills__icon" />
-            <p>BigQuery</p>
-            </div>
-
-            <div class="skills__card">
-            <img src="assets\img\looker-studio.png" alt="Airflow" class="skills__icon" />
-            <p>Looker Studio</p>
-            </div>
-
-            <div class="skills__card">
-            <img src="assets\img\power-bi.png" alt="Airflow" class="skills__icon" />
-            <p>Power BI</p>
-            </div>
-
-            <div class="skills__card">
-            <img src="assets\img\gcp.png" alt="Git" class="skills__icon" />
-            <p>GCP</p>
-            </div>
-
-            <div class="skills__card">
-            <img src="assets\img\Git.png" alt="Docker" class="skills__icon" />
-            <p>Git</p>
-            </div>
-
-            <div class="skills__card">
-            <img src="assets\img\Docker.png" alt="Jupyter" class="skills__icon" />
-            <p>Docker</p>
-            </div>
-
-            <div class="skills__card">
-            <img src="assets\img\kubernetes.png" alt="Jupyter" class="skills__icon" />
-            <p>Kubernetes</p>
-            </div>
-        </div>
-        </section>
-
-
-        <!--==================== Certificates ====================-->
-        <section class="certificate section">
-            <h2 class="section__title">My Certificates</h2>
-            <span class="section__subtitle">My Learning Journey</span>
-            <span class="section__subtitle">Scroll or slide here to see next>>></span>
-
-            <div data-aos="fade-up" class="portfolio__container container swiper-container">
-                <div class="swiper-wrapper">
-                    <!--==================== Certificate 1 ====================-->
-                    <div class="portfolio__content grid swiper-slide">
-                        <img src="assets\img\R2DE_certificate.jpg" alt="" class="portfolio__img">
-
-                        <div class="portfolio__data">
-                            <p>Road to Data Engineer 3.0</p>
-                            <a href="assets\pdf\R2DE_certificate.pdf"
-                                class="button button--flex button--small portfolio_-button">
-                                Preview
-                                <i class="uil uil-arrow-right button__icon"></i>
-                            </a>
-                        </div>
-                    </div>
-                    <!--==================== Certificate 2 ====================-->
-                    <div class="portfolio__content grid swiper-slide">
-                        <img src="assets\img\Berkeley skydeck.jpg" alt="" class="portfolio__img">
-
-                        <div class="portfolio__data">
-                            <p>Third Prize – BU x Berkeley SkyDeck Fund Hackathon 2025</p>
-                            <a href="assets\pdf\Berkeley Skydeck Certificate.pdf"
-                                class="button button--flex button--small portfolio_-button">
-                                Preview
-                                <i class="uil uil-arrow-right button__icon"></i>
-                            </a>
-                        </div>
-                    </div>
-                    <!--==================== Certificate 3 ====================-->
-                    <div class="portfolio__content grid swiper-slide">
-                        <img src="assets\img\Certificate_Oic.jpg" alt="" class="portfolio__img">
-
-                        <div class="portfolio__data">
-                            <p>OIC Insurtech Award 2022 Certificate</p>
-                            <a href="assets\pdf\Certificate_Oic.pdf"
-                                class="button button--flex button--small portfolio_-button">
-                                Preview
-                                <i class="uil uil-arrow-right button__icon"></i>
-                            </a>
-                        </div>
-                    </div>
-                    <!--==================== Certificate 4 ====================-->
-                    <div class="portfolio__content grid swiper-slide">
-                        <img src="assets\img\Certificate_Aging.PNG" alt="" class="portfolio__img">
-
-                        <div class="portfolio__data">
-                            <p>Innovation For Aging Society 2022 Certificate</p>
-                            <a href="/assets/pdf/Mrinmoy_abstract_CSS.pdf"
-                                class="button button--flex button--small portfolio_-button">
-                                Preview
-                                <i class="uil uil-arrow-right button__icon"></i>
-                            </a>
-                        </div>
-                    </div>
-
-
-        </section>
-
-
-        <!--==================== PORTFOLIO ====================-->
-        <section class="portfolio section" id="portfolio">
-            <h2 class="section__title">Projects</h2>
-            <span class="section__subtitle">Personal and Academic Projects</span>
-
-            <div data-aos="fade-right" class="portfolio__container container swiper-container">
-                <div class="swiper-wrapper">
-                    <!--==================== PORTFOLIO 1 ====================-->
-                    <div class="portfolio__content grid swiper-slide">
-                        <img src="assets\img\R2DE_project.png" alt="" class="portfolio__img">
-
-                        <div class="portfolio__data">
-                            <h3 class="portfolio__title">R2DE3.0 Data Project</h3>
-                            <p class="portfolio__description">Automated ETL pipeline with Airflow integrating MySQL and API; 
-                                transformed and stored data in BigQuery with Pandas, and visualized insights using Looker Studio.</p>
-                            <!-- <a href="#" class="button button--flex button--small portfolio_-button">
-                                Demo
-                                <i class="uil uil-arrow-right button__icon"></i>
-                            </a> -->
-                        </div>
-                    </div>
-                    <!--==================== PORTFOLIO 2 ====================-->
-                    <div class="portfolio__content grid swiper-slide">
-                        <img src="assets\img\sentiment_project.png" alt="" class="portfolio__img">
-
-                        <div class="portfolio__data">
-                            <h3 class="portfolio__title"> Sentiment Analysis on Product Reviews (DistilBERT)</h3>
-                            <p class="portfolio__description">Built a real-time sentiment analysis app using DistilBERT and spaCy, 
-                                optimized with ONNX for fast CPU inference and deployed via Streamlit and Ngrok.</p>
-                            <!-- <a href="#" class="button button--flex button--small portfolio_-button">
-                                Demo
-                                <i class="uil uil-arrow-right button__icon"></i> -->
-                            </a>
-                        </div>
-                    </div>
-
-                </div>
-
-
-                <!-- Add Arrows -->
-                <div class="swiper-button-next">
-                    <i class="uil uil-angle-right-b swiper-portfolio-icon"></i>
-                </div>
-                <div class="swiper-button-prev">
-                    <i class="uil uil-angle-left-b swiper-portfolio-icon"></i>
-                </div>
-
-                <!-- Add Pagination -->
-                <div class="swiper-pagination"></div>
-            </div>
-        </section>
-
-
-
-
-
-        <!--==================== CONTACT ME ====================-->
+        <!--==================== CONTACT ====================-->
         <section class="contact section" id="contact">
-            <h2 class="section__title">Contact Me</h2>
-            <span class="section__subtitle">Get in touch</span>
-
-            <div data-aos="fade-in" class="contact__container container grid">
-                <div>
-                    <div class="contact__information">
-                        <i class="uil uil-envelope contact__icon "></i>
-                        <!--home__social-->
-                        <div>
-                            <h3 class="contact__title">Email</h3>
-                            <span class="contact__subtitle"> jeeranan.prak@gmail.com</span>
-                        </div>
-                    </div>
-                    <div class="contact__information">
-                        <i class="uil uil-github-alt contact__icon"></i>
-                        <div>
-                            <h3 class="contact__title">Github</h3>
-                            <span class="contact__subtitle">https://github.com/KateJeeranan</span>
-                        </div>
-                    </div>
+            <div class="cta container container--wide" data-aos="fade-up">
+                <div class="cta__data">
+                    <h2 class="cta__title"><span lang="th">ติดต่อ</span><span lang="en">Get in Touch</span></h2>
+                    <p class="cta__description"><span lang="th">ยินดีพูดคุยเพิ่มเติมเกี่ยวกับผลงานและโอกาสในการร่วมงานค่ะ</span><span lang="en">Happy to talk more about my work and new opportunities.</span></p>
+                </div>
+                <div class="cta__contacts">
+                    <a href="mailto:jeeranan.prak@gmail.com" class="cta__link">
+                        <i class="uil uil-envelope"></i> jeeranan.prak@gmail.com
+                    </a>
+                    <a href="https://github.com/KateJeeranan" target="_blank" rel="noopener" class="cta__link">
+                        <i class="uil uil-github-alt"></i> github.com/KateJeeranan
+                    </a>
+                    <a href="https://www.linkedin.com/in/jeeranankate/" target="_blank" rel="noopener" class="cta__link">
+                        <i class="uil uil-linkedin-alt"></i> linkedin.com/in/jeeranankate
+                    </a>
                 </div>
             </div>
         </section>
-        <div data-aos="fade-in" class="contact__container container grid">
-
     </main>
 
     <!--==================== FOOTER ====================-->
     <footer class="footer">
         <div class="footer__bg">
-            <p>&copy; 2025 Jeeranan Prakothan | All Rights Reserved</p>
+            <p>&copy; 2026 Jeeranan Prakothan | All Rights Reserved</p>
         </div>
     </footer>
 
-
     <!--==================== SCROLL TOP ====================-->
-    <div><a href="#" class="scrollup" id="scroll-up">
-            <i class="uil uil-arrow-up scrollup__icon"></i>
-        </a></div>
-
-    <!--==================== SWIPER JS ====================-->
-    <script src="/assets/js/swiper-bundle.min.js"></script>
+    <a href="#" class="scrollup" id="scroll-up" aria-label="Back to top">
+        <i class="uil uil-arrow-up scrollup__icon"></i>
+    </a>
 
     <!--==================== MAIN JS ====================-->
     <script src="assets/js/main.js"></script>
 
-    <!--=================== Animated text ===============-->
-    <script src="https://cdn.jsdelivr.net/npm/typed.js@2.0.12"></script>
-    <script>
-        var typed = new Typed(".auto-input", {
-            strings: [
-                "a student",
-                "into data",
-            ],
-            typeSpeed: 100,
-            backSpeed: 100,
-            loop: true,
-        });
-    </script>
-
     <!--=================== Animate scroll js ===============-->
     <script src="https://unpkg.com/aos@next/dist/aos.js"></script>
     <script>
-        AOS.init({
-            offset: 300,
-            duration: 2000
-        });
+        AOS.init({ offset: 120, duration: 900, once: true });
     </script>
-
 </body>
 
 </html>
