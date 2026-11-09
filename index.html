@@ -21,7 +21,8 @@
     <link rel="stylesheet" href="https://unicons.iconscout.com/release/v4.0.0/css/line.css" />
 
     <!--==================== CSS ====================-->
-    <link rel="stylesheet" href="assets/css/style.css" />
+    <!-- ?v= คือเลขเวอร์ชัน: แก้ CSS/JS แล้วเปลี่ยนเลขนี้ทุกครั้งก่อน push เบราว์เซอร์จะโหลดไฟล์ใหม่ทันที -->
+    <link rel="stylesheet" href="assets/css/style.css?v=2" />
 
     <title>Jeeranan Prakothan - Portfolio</title>
 
@@ -29,7 +30,7 @@
     <link rel="shortcut icon" href="assets/img/kitty.png" type="image/png">
 
     <!--==================== Animate on scroll CDN ====================-->
-    <link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css" />
+    <link rel="stylesheet" href="https://unpkg.com/aos@2.3.4/dist/aos.css" />
 </head>
 
 <!--
@@ -533,12 +534,17 @@
     </a>
 
     <!--==================== MAIN JS ====================-->
-    <script src="assets/js/main.js"></script>
+    <script src="assets/js/main.js?v=2"></script>
 
     <!--=================== Animate scroll js ===============-->
-    <script src="https://unpkg.com/aos@next/dist/aos.js"></script>
+    <script src="https://unpkg.com/aos@2.3.4/dist/aos.js"></script>
     <script>
-        AOS.init({ offset: 120, duration: 900, once: true });
+        if (window.AOS) {
+            AOS.init({ offset: 120, duration: 900, once: true });
+        } else {
+            // animation library failed to load: show everything instead of leaving it invisible
+            document.querySelectorAll('[data-aos]').forEach(el => el.removeAttribute('data-aos'));
+        }
     </script>
 </body>
 
